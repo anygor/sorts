@@ -73,6 +73,15 @@ public class App {
                     System.out.println("-----------------------------------------------------");
                     //System.out.println(Arrays.toString(newArray) + " \n -----------------------------------------------------");
 
+                    System.out.println("Counting sort");
+                    newArray = Arrays.copyOf(array, array.length);
+                    //System.out.println(Arrays.toString(newArray));
+                    nanoTime = System.nanoTime();
+                    newArray = CountingSort.sort(newArray);
+                    System.out.println("Time elapsed: " + (System.nanoTime() - nanoTime));
+                    //System.out.println(Arrays.toString(newArray) + " \n -----------------------------------------------------");
+                    System.out.println("-----------------------------------------------------");
+
                     System.out.println("INTERNAL JAVA SORT");
                     newArray = Arrays.copyOf(array, array.length);
                     //System.out.println(Arrays.toString(newArray));
