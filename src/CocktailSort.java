@@ -9,22 +9,9 @@ public class CocktailSort {
             for (int i = rightBorder; i >= leftBorder; i--) {
                 if (sortedArray[i - 1] > sortedArray[i]) {
                     movedElement = sortedArray[i];
-                    int counter = 0;
-                    while ((sortedArray[i - 1] > movedElement)) {
-                        if (i > leftBorder) {
-                            sortedArray[i] = sortedArray[i - 1];
-                            i--;
-                            counter++;
-                        }
-                        else break;
-                    }
-                    sortedArray[i] = movedElement;
-                    i += counter;
+                    sortedArray[i] = sortedArray[i - 1];
+                    sortedArray[i - 1] = movedElement;
                     lastRightIndex = i;
-                    //movedElement = sortedArray[i];
-                    //sortedArray[i] = sortedArray[i - 1];
-                    //sortedArray[i - 1] = movedElement;
-                    //lastRightIndex = i;
                 }
             }
             if (lastRightIndex != 0 && lastRightIndex > leftBorder) {
