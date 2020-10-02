@@ -28,6 +28,7 @@ public class App {
                     System.out.println("help - duh");
                     System.out.println("quit - abort the app");
                     System.out.println("demo - to see the app in its glory");
+                    System.out.println("large - to see only quick and counting sort for large arrays");
                     break;
                 }
                 case "quit": {
@@ -54,8 +55,10 @@ public class App {
                     logger.info("Selection before " + Arrays.toString(array));
                     nanoTime = System.nanoTime();
                     newArray = SelectionSort.sort(newArray);
-                    System.out.println("Time elapsed: " + (System.nanoTime() - nanoTime));
-                    logger.info("Selection after " + Arrays.toString(newArray));
+                    nanoTime = System.nanoTime() - nanoTime;
+                    System.out.println("Time elapsed: " + nanoTime);
+                    logger.info("Time elapsed: " + nanoTime);
+                    logger.info("Selection after " + Arrays.toString(newArray) + "\n");
                     System.out.println("-----------------------------------------------------");
 
                     System.out.println("Cocktail sort");
@@ -63,16 +66,69 @@ public class App {
                     logger.info("Cocktail before " + Arrays.toString(newArray));
                     nanoTime = System.nanoTime();
                     newArray = CocktailSort.sort(newArray);
-                    System.out.println("Time elapsed: " + (System.nanoTime() - nanoTime));
+                    nanoTime = System.nanoTime() - nanoTime;
+                    System.out.println("Time elapsed: " + nanoTime);
+                    logger.info("Time elapsed: " + nanoTime);
                     System.out.println("-----------------------------------------------------");
-                    logger.info("Cocktail after " + Arrays.toString(newArray));
+                    logger.info("Cocktail after " + Arrays.toString(newArray) + "\n");
 
                     System.out.println("Quick sort");
                     newArray = Arrays.copyOf(array, array.length);
                     logger.info("Quick before " + Arrays.toString(newArray));
                     nanoTime = System.nanoTime();
                     newArray = QuickSort.sort(newArray);
-                    System.out.println("Time elapsed: " + (System.nanoTime() - nanoTime));
+                    nanoTime = System.nanoTime() - nanoTime;
+                    System.out.println("Time elapsed: " + nanoTime);
+                    logger.info("Time elapsed: " + nanoTime);
+                    System.out.println("-----------------------------------------------------");
+                    logger.info("Quick after " + Arrays.toString(newArray) + "\n");
+
+                    System.out.println("Counting sort");
+                    newArray = Arrays.copyOf(array, array.length);
+                    logger.info("Counting before " + Arrays.toString(newArray));
+                    nanoTime = System.nanoTime();
+                    newArray = CountingSort.sort(newArray);
+                    nanoTime = System.nanoTime() - nanoTime;
+                    System.out.println("Time elapsed: " + nanoTime);
+                    logger.info("Time elapsed: " + nanoTime);
+                    logger.info("Counting after " + Arrays.toString(newArray) + "\n");
+                    System.out.println("-----------------------------------------------------");
+
+                    System.out.println("INTERNAL JAVA SORT");
+                    newArray = Arrays.copyOf(array, array.length);
+                    logger.info("Internal before " + Arrays.toString(newArray));
+                    nanoTime = System.nanoTime();
+                    Arrays.sort(newArray);
+                    nanoTime = System.nanoTime() - nanoTime;
+                    System.out.println("Time elapsed: " + nanoTime);
+                    logger.info("Time elapsed: " + nanoTime);
+                    logger.info("Internal after " + Arrays.toString(newArray) + "\n\n");
+                    System.out.println("-----------------------------------------------------");
+                    System.out.println(Arrays.toString(newArray) + " \n -----------------------------------------------------");
+                    break;
+
+                }
+                case "large": {
+                    System.out.println("Here you will create an array of a large size\n" +
+                            "And you will see the difference between the different sort implementations");
+                    System.out.println("Type a size, the app will generate an array of that size" +
+                            "with random elements in range [-1000, 999]");
+                    size = scanner.nextInt();
+                    scanner = new Scanner(System.in);
+                    array = new int[size];
+
+                    for (int i = 0; i < size; i++) {
+                        Random random = new Random();
+                        array[i] = random.nextInt(2000) - 1000;
+                    }
+                    System.out.println("Quick sort");
+                    newArray = Arrays.copyOf(array, array.length);
+                    logger.info("Quick before " + Arrays.toString(newArray));
+                    nanoTime = System.nanoTime();
+                    newArray = QuickSort.sort(newArray);
+                    nanoTime = System.nanoTime() - nanoTime;
+                    System.out.println("Time elapsed: " + nanoTime);
+                    logger.info("Time elapsed: " + nanoTime);
                     System.out.println("-----------------------------------------------------");
                     logger.info("Quick after " + Arrays.toString(newArray));
 
@@ -81,21 +137,12 @@ public class App {
                     logger.info("Counting before " + Arrays.toString(newArray));
                     nanoTime = System.nanoTime();
                     newArray = CountingSort.sort(newArray);
-                    System.out.println("Time elapsed: " + (System.nanoTime() - nanoTime));
+                    nanoTime = System.nanoTime() - nanoTime;
+                    System.out.println("Time elapsed: " + nanoTime);
+                    logger.info("Time elapsed: " + nanoTime);
                     logger.info("Counting after " + Arrays.toString(newArray));
                     System.out.println("-----------------------------------------------------");
-
-                    System.out.println("INTERNAL JAVA SORT");
-                    newArray = Arrays.copyOf(array, array.length);
-                    logger.info("Internal before " + Arrays.toString(newArray));
-                    nanoTime = System.nanoTime();
-                    Arrays.sort(newArray);
-                    System.out.println("Time elapsed: " + (System.nanoTime() - nanoTime));
-                    logger.info("Internal after " + Arrays.toString(newArray) + "\n");
-                    System.out.println("-----------------------------------------------------");
-                    System.out.println(Arrays.toString(newArray) + " \n -----------------------------------------------------");
                     break;
-
                 }
                 default: {
                     System.out.println("Unknown command");
